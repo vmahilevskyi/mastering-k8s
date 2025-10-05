@@ -287,7 +287,7 @@ start() {
     # Set up kubelet kubeconfig
     sudo cp /root/.kube/config /var/lib/kubelet/kubeconfig
     export KUBECONFIG=~/.kube/config
-    cp /tmp/sa.pub /tmp/ca.crt
+    # cp /tmp/sa.pub /tmp/ca.crt
 
     # Create service account and configmap if they don't exist
     sudo kubebuilder/bin/kubectl create sa default 2>/dev/null || true

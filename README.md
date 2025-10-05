@@ -220,7 +220,7 @@ sudo kubebuilder/bin/kube-scheduler \
 # Copy kubeconfig
 sudo cp /root/.kube/config /var/lib/kubelet/kubeconfig
 export KUBECONFIG=~/.kube/config
-cp /tmp/sa.pub /tmp/ca.crt
+# cp /tmp/sa.pub /tmp/ca.crt
 
 # Create service account and configmap
 sudo kubebuilder/bin/kubectl create sa default
@@ -275,7 +275,7 @@ sudo kubebuilder/bin/kubectl get componentstatuses
 sudo kubebuilder/bin/kubectl get --raw='/readyz?verbose'
 
 # Create Deployment 
-sudo  kubebuilder/bin/kubectl create deploy demo --image nginx
+sudo kubebuilder/bin/kubectl create deploy demo --image nginx
 
 # Check all resources
 sudo kubebuilder/bin/kubectl get all -A
