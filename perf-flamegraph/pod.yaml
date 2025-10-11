@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubectl-flame
+spec:
+  containers:
+    - name: kubectl-flame
+      image: verizondigital/kubectl-flame:v0.2.4-perf
+      securityContext:
+        privileged: true
+        capabilities:
+          add: ["SYS_ADMIN", "SYS_PTRACE"]
+      command: ["/bin/sh", "-c", "sleep infinity"]
+  hostPID: true
+  hostNetwork: true
+  restartPolicy: Never
+  tolerations:
+  - effect: NoSchedule
+    key: node.cloudprovider.kubernetes.io/uninitialized
+    operator: Equal
+    value: "true"
