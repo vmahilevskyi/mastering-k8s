@@ -7,8 +7,8 @@ metadata:
 spec:
   interval: 1m0s
   ref:
-    branch: imageautomation
-  url: https://github.com/den-vasyliev/flux-gitops-dev
+    branch: gitops
+  url: https://github.com/vmahilevskyi/mastering-k8s-flux-gitops-dev
   secretRef:
     name: github-auth
 ---

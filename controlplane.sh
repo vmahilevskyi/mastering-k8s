@@ -33,10 +33,6 @@ stop_process() {
 
 start() {
 
-# Source other scripts
-# source ./download.sh
-# source ./pki.sh
-
 # Get the host IP address
 HOST_IP=$(hostname -I | awk '{print $1}')
 POD_CIDR=192.168.0.0/24
@@ -101,6 +97,10 @@ cgroupDriver: cgroupfs
 maxPods: 50
 providerID: ""
 EOF
+
+# Source other scripts
+# source ./download.sh
+# source ./pki.sh
 
     if check_running; then
         echo "Kubernetes components are already running"
