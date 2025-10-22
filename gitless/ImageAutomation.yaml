@@ -1,0 +1,40 @@
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImageRepository
+metadata:
+  name: ghcr-vmahilevskyi
+  namespace: flux-system
+spec:
+  image: ghcr.io/vmahilevskyi/mastering-k8s-kbot-src
+  interval: 5h
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImagePolicy
+metadata:
+  name: kbot-policy
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: ghcr-vmahilevskyi
+  policy:
+    semver:
+      range: 1.x
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImageUpdateAutomation
+metadata:
+  name: podinfo-update
+  namespace: flux-system
+spec:
+  interval: 5m
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  git:
+    commit:
+      author:
+        email: fluxcdbot@users.noreply.github.com
+        name: fluxcdbot
+    push:
+      branch: gitops
+  update:
+    path: ./clusters/demo/kbot-hr.yaml

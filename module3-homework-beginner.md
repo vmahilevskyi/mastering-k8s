@@ -179,3 +179,18 @@ Welcome to kbot server!
 Version: v1.1.0-2a77ed0-amd64
 ```
 Git commit SHA `2a77ed0` corresponds to the release https://github.com/vmahilevskyi/mastering-k8s-kbot-src/releases/tag/v1.1.0
+
+## Added manifests for Image Update Automation
+
+[Pipeline](https://github.com/vmahilevskyi/mastering-k8s-kbot-src/actions/runs/18723846318) published container image ghcr.io/vmahilevskyi/mastering-k8s-kbot-src:1.2.0.
+
+image-automation-controller has detected new image tag and [pushed the changes](https://github.com/vmahilevskyi/mastering-k8s-flux-gitops-dev/commit/e7b3391c7d8e937ecf742ce2d8208dc80782ea69) to the repositiry
+```
+Normal  Succeeded  5m4s  image-automation-controller  pushed commit 'e7b3391' to branch 'gitops'                                                                      Update from image update automation  
+```
+
+And then helm-controller detected changes to image.tag value and initiated `helm upgrade`.
+```
+{"level":"info","ts":"2025-10-22T17:05:37.679Z","msg":"running 'upgrade' action with timeout of 5m0s","controller":"helmrelease","controllerGroup":"helm.toolkit.fluxcd.io","controllerKind":"HelmRelease","HelmRelease":{"name":"kbot","namespace":"demo"},"namespace":"demo","name":"kbot","reconcileID":"06c515a7-7779-43d0-8db9-1b28c10b79b4"} 
+```
+
